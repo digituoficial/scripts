@@ -2,8 +2,8 @@ import urllib3
 import json
 
 
-TOKEN = 'kREqlf230Nve2axC11agMfTiDtRbAFxOcvJzrRIRUu7yFg9Ag3R0YDW8IZjtIZtJ'
-AUTHORIZATION = 'Basic MjAxNTExNDQwMTAzMjE6bTMwLkIwMDkxMDkzNTYyMDBi'
+TOKEN = ''
+AUTHORIZATION = ''
 
 
 def informacoes_basicas_aluno(matricula):
