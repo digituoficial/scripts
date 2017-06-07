@@ -4,11 +4,11 @@ import json
 
 TOKEN = ''
 AUTHORIZATION = ''
+http = urllib3.PoolManager()
 
 
 def informacoes_basicas_aluno(matricula):
-    http = urllib3.PoolManager()
-    global TOKEN
+    global TOKEN, http
     r = http.request(
         'GET',
         'https://suap.ifrn.edu.br/api/v2/edu/alunos/{}/'.format(matricula),
@@ -22,8 +22,7 @@ def informacoes_basicas_aluno(matricula):
 
 
 def informacoes_basicas_servidor(token_servidor, matricula):
-    http = urllib3.PoolManager()
-    global TOKEN, AUTHORIZATION
+    global TOKEN, http
     r = http.request(
         'GET',
         'https://suap.ifrn.edu.br/api/v2/edu/servidores/{}/'.format(matricula),
@@ -37,8 +36,7 @@ def informacoes_basicas_servidor(token_servidor, matricula):
 
 
 def informacoes_curso(id_curso):
-    http = urllib3.PoolManager()
-    global TOKEN
+    global TOKEN, http
     r = http.request(
         'GET',
         'https://suap.ifrn.edu.br/api/v2/edu/cursos/{}/'.format(id_curso),
