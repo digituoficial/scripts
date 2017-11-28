@@ -7,7 +7,7 @@ Esse documento tem como objetivo descrever e mostrar as configuração de setup 
 
 * Sobre a biblioteca usada
 
-A biblioteca usada foi a biblioteca oficial do [adafruit](https://cdn-shop.adafruit.com/datasheets/ZFM+user+manualV15.pdf). A documentação está em japonês.
+A biblioteca usada foi a biblioteca oficial do [adafruit](https://cdn-shop.adafruit.com/datasheets/ZFM+user+manualV15.pdf). A documentação está em inglês.  Primeiro, você precisa inserir a biblioteca do fingerprint adafruit. *Sketch* -> *Incluir Bibliotecas * -> *Gerenciar bibliotecas* . Na busca você digita: adafruit fingerprint
 
 * Sobre o código
 
