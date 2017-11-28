@@ -69,6 +69,9 @@ Existem algumas funções:
 
 
 # MQTT
+O MQTT é um protocolo de comunicação muito utilizado em IOT. Para instalar ele no arduino, utilizamos uma biblioteca muito popular.
+Primeiro, você precisa inserir a biblioteca do fingerprint adafruit. *Sketch* -> *Incluir Bibliotecas * -> *Gerenciar bibliotecas* . Na busca você digita: *mqtt*. Em seguida, selecione a *PubSubClient* e instale a biblioteca.
+
 Para fazer uso do protocolo, usamos um cliente chamdo mosquitto.
 
 Para realizar a install basta inserir os seguintes comandos em um terminal:
