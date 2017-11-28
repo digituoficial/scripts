@@ -7,7 +7,7 @@ Esse documento tem como objetivo descrever e mostrar as configuração de setup 
 
 * Sobre a biblioteca usada
 
-A biblioteca usada foi a biblioteca oficial do [adafruit](https://github.com/adafruit/Adafruit-Fingerprint-Sensor-Library). A documentação está em japonês.
+A biblioteca usada foi a biblioteca oficial do [adafruit](https://cdn-shop.adafruit.com/datasheets/ZFM+user+manualV15.pdf). A documentação está em japonês.
 
 * Sobre o código
 
