@@ -74,7 +74,7 @@ Primeiro, você precisa inserir a biblioteca do fingerprint adafruit. *Sketch* -
 
 Para fazer uso do protocolo, usamos um cliente chamdo mosquitto.
 
-Para realizar a install basta inserir os seguintes comandos em um terminal:
+Para realizar a instalação basta inserir os seguintes comandos em um terminal:
 
 `# apt update`  
 `# apt install mosquito`  
@@ -82,6 +82,27 @@ Para realizar a install basta inserir os seguintes comandos em um terminal:
 
 * Uso do MQTT com arduino
 Para usar MQTT com arduino fizemos uso da biblioteca [PubSubClient](https://pubsubclient.knolleary.net/) e pode facilmente ser instalada via interface gráfica pela IDE arduino.
+
+* Comandos básicos do MQTT com o mosquitto
+Criar um tópico:   
+`$ mosquitto_sub -t 'topico'`   
+O comando cria um tópico denominado *topico* e está apto a receber mensagens.  
+Enviar mensagens a um tópico.   
+`$ mosquitto_pub -t 'topico' -m 'mensagem' -h 'host.com' -p 1883`   
+O comando acima envia uma mensagem para o tópico chamado *topico*. Para alterar o contedo basta passar entre aspas o conteúdo após o parâmetro *-m*.   
+
+# Node-Red
+
+O Node-red é uma ferramenta de escrita visual projeta para desenvolver dashboards para a internet das coisas. Com a ferramenta facilmente pode-se criar um dashboards que recebe uma requisição HTTP e envia uma mensagem MQTT.
+
+A instalação da ferramenta pode ser feita por meio do gerenciador de pacotes *npm*.   
+Para isso é necessário a instalação do NodeJS.  
+Num terminal basta inserir o comando no terminal:   
+```# npm install -g node-red```   
+
+Para iniciar basta inserir no terminal:
+
+`$ node-red`
 
 # Instalação das Programas/bibliotecas usadas
 Programas e algumas bibliotecas são usadas nos programas desenvolvidos.
