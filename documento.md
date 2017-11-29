@@ -1,6 +1,6 @@
 # Documentação geral do projeto
 
-Esse documento tem como objetivo descrever e mostrar as configuração de setup das ferramentas e programas usadas no projeto nesse período.
+Esse documento tem como objetivo descrever e mostrar as configuração de setup das ferramentas e programas usadas no projeto de pesquisa.
 
 # Sobre o sensor biométrico
 
@@ -26,6 +26,15 @@ Configure o sensor deve ser configurado conforme a tabela
 |    Black      |       GND        |
 
 Você pode colocar os cabos `Green` e `Black` em qualquer outra porta digital desde que mude no momento  da instancia de `mySerial()`.
+
+
+
+**Observação:**    
+
+A biblioteca, após ser instalada, baixa uma série de programas básicos que podem ser usados como base para codificação.
+Você pode encontra-las em *arquivo* > *exemplo* > *Adafruit FingerPrint Sensor Library*.
+
+Nessa aba existem programas para apagar, cadastrar e listar digitais.
 
 
 # Aplicativo mobile
@@ -70,7 +79,7 @@ Existem algumas funções:
 
 # MQTT
 O MQTT é um protocolo de comunicação muito utilizado em IOT. Para instalar ele no arduino, utilizamos uma biblioteca muito popular.
-Primeiro, você precisa inserir a biblioteca do fingerprint adafruit. *Sketch* -> *Incluir Bibliotecas * -> *Gerenciar bibliotecas* . Na busca você digita: *mqtt*. Em seguida, selecione a *PubSubClient* e instale a biblioteca.
+Primeiro, você precisa inserir a biblioteca do fingerprint adafruit. *Sketch* -> *Incluir Bibliotecas* -> *Gerenciar bibliotecas* . Na busca você digita: *mqtt*. Em seguida, selecione a *PubSubClient* e instale a biblioteca.
 
 Para fazer uso do protocolo, usamos um cliente chamdo mosquitto.
 
@@ -90,6 +99,58 @@ O comando cria um tópico denominado *topico* e está apto a receber mensagens.
 Enviar mensagens a um tópico.   
 `$ mosquitto_pub -t 'topico' -m 'mensagem' -h 'host.com' -p 1883`   
 O comando acima envia uma mensagem para o tópico chamado *topico*. Para alterar o contedo basta passar entre aspas o conteúdo após o parâmetro *-m*.   
+
+**Sobre o uso do MQTT com Python:**   
+Para enviar/receber mensagens MQTT com Python faz-se uso de uma biblioteca externa, no caso `paho`.
+
+Um simples script pode enviar/receber as mensagens:
+
+``` python
+# import a funcão com um 'alias' pub
+import paho.mqtt.publish as pub
+import paho.mqtt.client as mqtt
+
+
+def initialize(client, userdata, flags, rc):
+    '''
+    Funcao que inicializa os tópicos, ou seja, cria e coloca os nomes.
+    '''
+    client.subscribe("fingerprint/receive")
+    client.subscribe("fingerprint/confirm")
+
+
+def send_message(msg, topic, port=1883, server=''):
+    '''
+    Funcao que envia mensagens para para o tópico especificado como parâmetro.
+    '''
+    if msg and topic and server:
+        pub.single(topic, payload=msg, port=port, hostname=server)
+        return True
+    return False
+    
+def message(client, userdata, msg):
+    '''
+    Funcao que recebe mensagem e escreve no topico quando a mensagem é conhecida.
+    '''
+    if msg.topic == 'fingerprint/receive':
+        if msg.payload.decode('utf-8') == 'conhecida':
+            send_message("Abra a porta",
+                         topic='fingerprint/confirm', server='localhost')
+        else:
+            send_message("A porta deve continuar fechada",
+                         topic='fingerprint/confirm', server='localhost')
+    elif msg.topic == 'fingerprint/confirm':
+        pass
+
+#Inicializa o programa.
+if __name__ == '__main__':
+    client = mqtt.Client()
+    client.connect("localhost", 1883)
+    client.on_connect = initialize
+    client.on_message = message
+    client.loop_forever()
+```
+
 
 # Node-Red
 
