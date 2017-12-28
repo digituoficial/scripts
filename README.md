@@ -1,3 +1,7 @@
+# scripts
+Este projeto contém scripts para capturar informações do sistema.
+
+
 # Documentação geral do projeto
 
 Esse documento tem como objetivo descrever e mostrar as configuração de setup das ferramentas e programas usadas no projeto de pesquisa.
